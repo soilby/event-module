@@ -1,0 +1,19 @@
+{
+    "name": "soil/event-module",
+    "version": "0.0.1",
+    "minimum-stability": "dev",
+    "dist": {
+        "url": "https://github.com/soilby/event-module",
+        "type": "vcs"
+    },
+    "autoload": {
+        "psr-4": {
+            "Soil\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=5.4",
+        "zendframework/zendframework":          "2.3",
+        "soil/event-component": "dev-master"
+    }
+}
