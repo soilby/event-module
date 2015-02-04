@@ -1,0 +1,21 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: fliak
+ * Date: 4.2.15
+ * Time: 22.27
+ */
+
+$settings = [
+    'ontology_uri' => 'http://localhost/ns/ontology.owl#',
+
+    'gearman' => [
+        'serverIP' => '127.0.0.1',
+        'serverPort' => '4730'
+    ]
+
+];
+
+return [
+    'soil_events_config' => $settings
+];

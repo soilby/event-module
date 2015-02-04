@@ -1,0 +1,39 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: fliak
+ * Date: 4.2.15
+ * Time: 22.27
+ */
+
+$settings = [
+    'ontology_config' => [
+        'ontology_uri' => 'http://localhost/ns/ontology.owl#',
+        'ontology_abbr' => 'soilev',
+        'event_classification' => [
+            'CREATE' => 'CreateEvent',
+            'REMOVE' => 'RemoveEvent',
+            'CLAIM' => 'ClaimEvent',
+            'DECLINE' => 'DeclineEvent',
+            'SUBSCRIBE' => 'SubscribeEvent',
+            'COMPLETE' => 'CompleteEvent',
+            'COMMENT' => 'CommentEvent'
+        ],
+    ],
+    'carrier_config' => [
+        'output_rdf_format' => 'ntriples',
+        'queue_stream_name' => 'soil_event'
+    ],
+
+    'gearman' => [
+        'serverIP' => '127.0.0.1',
+        'serverPort' => '4730'
+    ],
+
+    'urinator_service' => 'URInator'
+
+];
+
+return [
+    'soil_events_config' => $settings
+];
