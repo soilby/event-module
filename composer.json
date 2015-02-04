@@ -7,8 +7,11 @@
         "type": "vcs"
     },
     "autoload": {
+        "classmap": [
+            "./Module.php"
+        ],
         "psr-4": {
-            "Soil\\Event\\": "./"
+            "Soil\\Event\\": "src"
         }
     },
     "require": {

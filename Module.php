@@ -28,7 +28,7 @@ class Module implements
     public function getConfig()
     {
         $config = [];
-        foreach (glob(__DIR__ . '/config/*.config.php') as $file) {
+        foreach (glob(__DIR__ . '/src/config/*.config.php') as $file) {
             /** @noinspection PhpIncludeInspection */
             $config = array_merge($config, include $file);
         }
@@ -58,10 +58,8 @@ class Module implements
 
     public function flushQueue(MvcEvent $e)    {
         //if was instantiated
-        if ($this->eventLogger && !$this->eventLogger->isEmpty()) {
-            $rdfQueue = $this->eventLogger->getRDFQueue('ntriples');
-            $client = $e->getApplication()->getServiceManager()->get('GearmanClient');
-            $client->addJob('talaka_events', $rdfQueue);
+        if ($this->eventLogger) {
+            $this->eventLogger->flush();
         }
     }
 
