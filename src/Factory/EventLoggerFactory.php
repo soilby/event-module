@@ -29,8 +29,32 @@ class EventLoggerFactory implements FactoryInterface {
         $eventLogger->setUrinator($urinator);
 
 
-        $urinator = $serviceLocator->get('Soil\EventComponent\Service\GearmanClient');
-        $eventLogger->setLogCarrier($urinator);
+        $gearmanConfig = $configuration['soil_events_config']['gearman'];
+
+        switch ($gearmanConfig['client_type'])  {
+            case 'native':
+                $gearmanClient = $serviceLocator->get('Soil\EventComponent\Service\GearmanClient');
+
+                break;
+
+            case 'http':
+                $gearmanClient = $serviceLocator->get('Soil\EventComponent\Service\HttpGearmanClient');
+
+                break;
+
+            default:
+                $serviceId = $gearmanConfig['client_type'];
+                if (!$serviceLocator->has($serviceId)) {
+                    throw new \Exception("EventLogger didn't configured properly. gearman.client_type point to an unexisted service `$serviceId`");
+                }
+
+                $gearmanClient = $serviceLocator->get($serviceId);
+
+                break;
+
+        }
+
+        $eventLogger->setLogCarrier($gearmanClient);
 
         $module = $serviceLocator->get('Soil\Event\Module');
         $module->setEventLoggerInstance($eventLogger);

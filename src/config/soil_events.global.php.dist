@@ -26,11 +26,15 @@ $settings = [
     ],
 
     'gearman' => [
-        'serverIP' => '127.0.0.1',
-        'serverPort' => '4730'
+        'client_type' => 'native', //native, http or an serviceId
+
+        'serverIP' => '127.0.0.1', //for native client
+        'serverPort' => '4730',    //for native client
+        'endpoint_url' => 'http://semantic.talaka.soil.by/endpoint/put_job' //for http client
     ],
 
-    'urinator_service' => 'URInator'
+    'urinator_service' => 'URInator',
+
 
 ];
 
