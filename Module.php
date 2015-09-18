@@ -59,7 +59,13 @@ class Module implements
     public function flushQueue(MvcEvent $e)    {
         //if was instantiated
         if ($this->eventLogger) {
-            $this->eventLogger->flush();
+            try {
+                $this->eventLogger->flush();
+            }
+            catch(\Exception $e)    {
+                //ignore
+                //FIXME: Add error loging
+            }
         }
     }
 
